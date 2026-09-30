@@ -31,7 +31,8 @@ class MainActivity : ComponentActivity() {
             Vk_education_androidTheme {
                 Screen(
                     sendTextToActivity = ::sendTextToActivity,
-                    toCallApp = ::toCallApp
+                    toCallApp = ::toCallApp,
+                    shareText = ::shareText
                 )
             }
         }
@@ -51,12 +52,21 @@ class MainActivity : ComponentActivity() {
         startActivity(intent)
     }
 
+    fun shareText(text: String){
+        val intent = Intent(Intent.ACTION_SEND).apply {
+            type = "text/plain"
+            putExtra(Intent.EXTRA_TEXT, text)
+        }
+        startActivity(intent)
+    }
+
 }
 
 @Composable
 fun Screen(
     sendTextToActivity: (String) -> Unit,
     toCallApp: (String) -> Unit,
+    shareText: (String) -> Unit,
 ){
     var text by remember { mutableStateOf(" ") }
     var isError by remember { mutableStateOf(false) }
@@ -94,6 +104,10 @@ fun Screen(
                 }
             }
         )
+        Button(
+            content = { Text("Поделиться") },
+            onClick = { shareText(text) }
+        )
     }
 }
 
@@ -108,6 +122,7 @@ fun ScreenPreview(){
         Screen(
             sendTextToActivity = {},
             toCallApp = {},
+            shareText = {},
         )
     }
 }
