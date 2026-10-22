@@ -10,6 +10,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -25,8 +28,10 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             Vk_education_androidTheme {
+                val snackBarHostState = remember { SnackbarHostState() }
                 Scaffold(
-                    modifier = Modifier.background(MaterialTheme.colorScheme.surface)
+                    modifier = Modifier.background(MaterialTheme.colorScheme.surface),
+                    snackbarHost = { SnackbarHost(snackBarHostState) }
                 ) { contentPadding ->
 
                     val navController = rememberNavController()
@@ -37,6 +42,7 @@ class MainActivity : ComponentActivity() {
                     ) {
                         composable("home") {
                             AppListScreen(
+                                snackBarHostState = snackBarHostState,
                                 toDetails = { navController.navigate("details") },
                                 modifier = Modifier.padding(contentPadding)
                             )
