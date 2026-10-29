@@ -15,17 +15,19 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.vk_education_android.R
+import com.example.vk_education_android.domain.AppDetails
+import com.example.vk_education_android.domain.Category
 import com.example.vk_education_android.ui.theme.Vk_education_androidTheme
 import kotlinx.coroutines.launch
 
 @Composable
 fun AppShowcase(
     onBack: () -> Unit,
+    appList: List<AppDetails>,
     modifier: Modifier = Modifier,
 ){
     val pagerState = rememberPagerState { 3 }
     val coroutineScope = rememberCoroutineScope()
-    val appList = getAppCards()
 
     Column(
         modifier = modifier
@@ -43,8 +45,8 @@ fun AppShowcase(
                 for (i in start..end) {
                     val app = appList[i]
                     AppCard(
-                        iconRes = app.iconRes,
-                        appName = app.appName,
+                        iconUrl = app.iconUrl,
+                        appName = app.name,
                         category = app.category,
                         description = app.description,
                         onClick = onBack
@@ -86,7 +88,41 @@ fun AppShowcase(
 private fun AppShowCasePreview(){
     Vk_education_androidTheme{
         AppShowcase(
-            onBack = {}
+            onBack = {},
+            appList = listOf(AppDetails(
+                id = "0",
+                name = "WhatsApp Messenger",
+                developer = "WhatsApp LLC",
+                category = Category.SOCIAL,
+                ageRating = 3,
+                size = 62.4f,
+                iconUrl = "https://www.google.com/s2/favicons?domain=whatsapp.com&sz=128",
+                screenshotUrlList = listOf(),
+                description = "Simple, reliable, and private messaging and calling for free."
+            ),
+                AppDetails(
+                    id = "1",
+                    name = "Instagram",
+                    developer = "Instagram",
+                    category = Category.SOCIAL,
+                    ageRating = 12,
+                    size = 54.8f,
+                    iconUrl = "https://www.google.com/s2/favicons?domain=instagram.com&sz=128",
+                    screenshotUrlList = listOf(),
+                    description = "Share photos, reels, and stories with friends and the world."
+                ),
+                AppDetails(
+                    id = "2",
+                    name = "Telegram",
+                    developer = "Telegram FZ-LLC",
+                    category = Category.SOCIAL,
+                    ageRating = 12,
+                    size = 48.2f,
+                    iconUrl = "https://www.google.com/s2/favicons?domain=telegram.org&sz=128",
+                    screenshotUrlList = listOf(),
+                    description = "Fast and secure messaging with cloud-based chats and channels."
+                ),
+                )
         )
     }
 }

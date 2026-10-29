@@ -19,6 +19,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.vk_education_android.R
+import com.example.vk_education_android.domain.AppDetails
 import com.example.vk_education_android.ui.theme.Vk_education_androidTheme
 
 @Composable
@@ -72,18 +73,18 @@ private fun ToolBar(){
 
 @Composable
 private fun AppListContent(
-    apps: List<AppCardState>,
+    apps: List<AppDetails>,
     toDetails: (appName: String) -> Unit,
 ){
     LazyColumn {
         apps.forEach {
             item {
                 AppCard(
-                    iconRes = it.iconRes,
-                    appName = it.appName,
+                    iconUrl = it.iconUrl,
+                    appName = it.name,
                     category = it.category,
                     description = it.description,
-                    onClick = { toDetails(it.appName) }
+                    onClick = { toDetails(it.name) }
                 )
             }
         }

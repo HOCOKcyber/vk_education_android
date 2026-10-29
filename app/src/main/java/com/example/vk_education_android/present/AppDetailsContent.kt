@@ -15,7 +15,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.vk_education_android.data.AppDetailsRepositoryImpl
 import com.example.vk_education_android.domain.AppDetails
+import com.example.vk_education_android.domain.AppDetailsRepository
 import com.example.vk_education_android.domain.Category
 import com.example.vk_education_android.domain.SimilarApp
 import com.example.vk_education_android.ui.theme.Vk_education_androidTheme
@@ -33,6 +35,10 @@ fun AppDetailsContent(
 ) {
     val appDetails = content.appDetails
     val descriptionCollapsed = content.descriptionCollapsed
+
+//    Потом убрать
+    val respository: AppDetailsRepository = AppDetailsRepositoryImpl()
+    val appListDetails = respository.get()
 
     Column(modifier.verticalScroll(rememberScrollState())) {
         Toolbar(
@@ -89,6 +95,7 @@ fun AppDetailsContent(
 
         AppShowcase(
             onBack = onBackClick,
+            appList = appListDetails,
             modifier = Modifier.padding(
                 horizontal = 16.dp
             )

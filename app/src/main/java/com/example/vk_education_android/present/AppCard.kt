@@ -1,7 +1,5 @@
 package com.example.vk_education_android.present
 
-import androidx.annotation.DrawableRes
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -19,15 +17,16 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil3.compose.AsyncImage
+import com.example.vk_education_android.domain.Category
 
 @Composable
 fun AppCard(
-    @DrawableRes iconRes: Int,
+    iconUrl: String,
     appName: String,
-    category: String,
+    category: Category,
     description: String,
     onClick: () -> Unit,
 ){
@@ -38,8 +37,8 @@ fun AppCard(
             .padding(horizontal = 8.dp)
             .clickable(onClick = onClick)
     ) {
-        Image(
-            painter = painterResource(iconRes),
+        AsyncImage(
+            model = iconUrl,
             contentDescription = null,
             modifier = Modifier
                 .size(70.dp)
@@ -54,7 +53,7 @@ fun AppCard(
                     text = appName
                 )
                 Text(
-                    text = category,
+                    text = category.name,
                     fontSize = 12.sp,
                     color = Color.White,
                     modifier = Modifier
@@ -64,7 +63,9 @@ fun AppCard(
                 )
             }
             Text(
-                text = description
+                text = description,
+                fontSize = 12.sp,
+                maxLines = 2,
             )
         }
     }
