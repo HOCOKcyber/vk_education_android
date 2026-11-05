@@ -13,8 +13,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -48,7 +48,7 @@ fun NavigationScreen() {
                 }
 
                 composable<Route.Details>() {
-                    val viewModel = viewModel<AppDetailsViewModel>()
+                    val viewModel = hiltViewModel<AppDetailsViewModel>()
                     val state by viewModel.state.collectAsStateWithLifecycle()
 
                     when (state) {

@@ -16,8 +16,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.vk_education_android.R
 import com.example.vk_education_android.domain.AppDetails
 import com.example.vk_education_android.ui.theme.Vk_education_androidTheme
@@ -28,7 +28,7 @@ fun AppListScreen(
     toDetails: (appId: String) -> Unit,
     modifier: Modifier = Modifier
 ){
-    val viewModel = viewModel<AppListViewModel>()
+    val viewModel = hiltViewModel<AppListViewModel>()
     val state by viewModel.state.collectAsStateWithLifecycle()
 
     LaunchedEffect(Unit) {
