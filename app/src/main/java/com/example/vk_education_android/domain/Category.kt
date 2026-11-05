@@ -5,6 +5,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 enum class Category {
+    // Старые значения — оставлены для обратной совместимости
     @SerialName("Приложения")
     APP,
 
@@ -38,6 +39,9 @@ enum class Category {
     @SerialName("Спорт")
     SPORTS,
 
+    @SerialName("Здоровье и фитнес")
+    HEALTH_AND_SPORT,
+
     @SerialName("Новости")
     NEWS,
 
@@ -63,5 +67,30 @@ enum class Category {
     SHOPPING,
 
     @SerialName("Утилиты")
-    UTILITIES
+    UTILITIES,
+
+    // Новые значения под категории из файла
+    @SerialName("Фото и видео")
+    PHOTO_AND_VIDEO,
+
+    @SerialName("Еда и напитки")
+    FOOD_AND_DRINKS,
+
+    @SerialName("Образ жизни")
+    LIFESTYLE,
+
+    @SerialName("Шопинг")
+    SHOPPING_MARKETPLACE,
+
+    @SerialName("Навигация")
+    NAVIGATION,
+
+    @SerialName("Общение")
+    COMMUNICATION,
+
+    @SerialName("Погода")
+    WEATHER,
+
+    @SerialName("Книги и справочники")
+    BOOKS_AND_REFERENCES
 }

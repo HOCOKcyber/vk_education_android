@@ -25,7 +25,7 @@ import com.example.vk_education_android.ui.theme.Vk_education_androidTheme
 @Composable
 fun AppListScreen(
     snackBarHostState: SnackbarHostState,
-    toDetails: () -> Unit,
+    toDetails: (appId: String) -> Unit,
     modifier: Modifier = Modifier
 ){
     val viewModel = viewModel<AppListViewModel>()
@@ -48,9 +48,9 @@ fun AppListScreen(
         ToolBar()
         AppListContent(
             apps = state.apps,
-            toDetails = { appName ->
+            toDetails = { appName, appId ->
                 viewModel.showSnackBar("Переход в $appName")
-                toDetails()
+                toDetails(appId)
             }
         )
     }
@@ -74,7 +74,7 @@ private fun ToolBar(){
 @Composable
 private fun AppListContent(
     apps: List<AppDetails>,
-    toDetails: (appName: String) -> Unit,
+    toDetails: (appName: String, appId: String) -> Unit,
 ){
     LazyColumn {
         apps.forEach {
@@ -84,7 +84,7 @@ private fun AppListContent(
                     appName = it.name,
                     category = it.category,
                     description = it.description,
-                    onClick = { toDetails(it.name) }
+                    onClick = { toDetails(it.name, it.id) }
                 )
             }
         }

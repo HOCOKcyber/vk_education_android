@@ -1,5 +1,6 @@
 package com.example.vk_education_android.domain
 
 interface AppDetailsRepository {
-    fun get() : List<AppDetails>
+    suspend fun getApps() : List<AppDetails>
+    suspend fun getById(id: String): AppDetails
 }

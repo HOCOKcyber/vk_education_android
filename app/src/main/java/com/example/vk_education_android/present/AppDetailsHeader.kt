@@ -100,6 +100,7 @@ private fun getCategoryText(category: Category): String = when (category) {
     Category.PHOTOGRAPHY -> "Фотография"
     Category.HEALTH -> "Здоровье"
     Category.SPORTS -> "Спорт"
+    Category.HEALTH_AND_SPORT -> "Здоровье и фитнес"
     Category.NEWS -> "Новости"
     Category.BOOKS -> "Книги"
     Category.BUSINESS -> "Бизнес"
@@ -109,6 +110,16 @@ private fun getCategoryText(category: Category): String = when (category) {
     Category.FOOD -> "Еда"
     Category.SHOPPING -> "Покупки"
     Category.UTILITIES -> "Утилиты"
+
+    // Новые категории из данных
+    Category.PHOTO_AND_VIDEO -> "Фото и видео"
+    Category.FOOD_AND_DRINKS -> "Еда и напитки"
+    Category.LIFESTYLE -> "Образ жизни"
+    Category.SHOPPING_MARKETPLACE -> "Шопинг"
+    Category.NAVIGATION -> "Навигация"
+    Category.COMMUNICATION -> "Общение"
+    Category.WEATHER -> "Погода"
+    Category.BOOKS_AND_REFERENCES -> "Книги и справочники"
 }
 
 @Preview

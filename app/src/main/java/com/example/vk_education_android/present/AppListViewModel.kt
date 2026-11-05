@@ -16,8 +16,17 @@ class AppListViewModel: ViewModel() {
 
     private val _state = MutableStateFlow(
         AppListState(
-            apps = repository.get()
+            apps = listOf()
     ))
+
+    init {
+        viewModelScope.launch {
+            val appsList = repository.getApps()
+            _state.value = _state.value.copy(
+                apps = appsList
+            )
+            }
+    }
 
     val state = _state.asStateFlow()
 
