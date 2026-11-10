@@ -61,6 +61,7 @@ fun NavigationScreen() {
                                 onShareClick = {
                                 },
                                 onInstallClick = {
+                                    viewModel.onInstallClick()
                                 },
                                 onReadMoreClick = {
                                 },

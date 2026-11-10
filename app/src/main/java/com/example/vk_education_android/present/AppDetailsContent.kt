@@ -48,6 +48,7 @@ fun AppDetailsContent(
         Spacer(Modifier.height(16.dp))
         InstallButton(
             onClick = onInstallClick,
+            installState = content.installState,
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 16.dp)
@@ -119,7 +120,8 @@ private fun Preview() {
                 ),
                 similarApps = MockData.getMockSimilarApps(),
                 descriptionCollapsed = false,
-                appShowcase = MockData.getMockShowcase()
+                appShowcase = MockData.getMockShowcase(),
+                installState = InstallState.Installed
             ),
             onReadMoreClick = {},
             onBackClick = {},

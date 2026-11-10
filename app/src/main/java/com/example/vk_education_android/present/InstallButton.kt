@@ -17,15 +17,23 @@ import com.example.vk_education_android.ui.theme.Vk_education_androidTheme
 @Composable
 fun InstallButton(
     onClick: () -> Unit,
+    installState: InstallState,
     modifier: Modifier = Modifier,
 ) {
     Button(
         onClick = onClick,
         shape = RoundedCornerShape(8.dp),
         contentPadding = PaddingValues(vertical = 12.dp),
+        enabled = installState !is InstallState.Installed,
         modifier = modifier,
     ) {
-        Text(text = stringResource(R.string.install))
+        Text(
+            text = when(installState){
+                is InstallState.Installed -> {stringResource(R.string.installed)}
+                is InstallState.Installing -> {stringResource(R.string.installing, installState.percent)}
+                is InstallState.NotInstall -> {stringResource(R.string.install)}
+            }
+        )
     }
 }
 
@@ -35,6 +43,7 @@ private fun Preview() {
     Vk_education_androidTheme {
         InstallButton(
             onClick = {},
+            installState = InstallState.NotInstall,
             modifier = Modifier.fillMaxWidth(),
         )
     }

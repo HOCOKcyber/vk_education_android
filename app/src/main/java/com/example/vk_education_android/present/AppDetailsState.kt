@@ -13,6 +13,13 @@ sealed interface AppDetailsState {
         val appDetails: AppDetails,
         val similarApps: List<SimilarApp>,
         val descriptionCollapsed: Boolean,
-        val appShowcase: List<AppDetails>
+        val appShowcase: List<AppDetails>,
+        val installState: InstallState
     ) : AppDetailsState
+}
+
+sealed interface InstallState{
+    object NotInstall: InstallState
+    data class Installing(val percent: Int): InstallState
+    data object Installed: InstallState
 }
