@@ -82,4 +82,9 @@ dependencies {
     implementation(libs.hilt.lifecycle.viewmodel.compose)
     ksp(libs.hilt.android.compiler)
 
+//    Mokito
+    testImplementation(libs.mokito.core)
+    testImplementation(libs.mokito.kotlin)
+    testImplementation(libs.coroutine.test)
+
 }
